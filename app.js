@@ -82,10 +82,19 @@ app.put("/listings/:id", async (req,res)=>{
     let{listing} = req.body;
     listing.image.filename ="listingimage";
     // console.log(id);
-    await Listing.findByIdAndUpdate(id, {...listing}, {new: true}).then((result)=>{
+    await Listing.findByIdAndUpdate(id, {...listing}, {new: true, runValidators: true}).then((result)=>{
         // console.log("listing is updated: ", result);
     }).catch(err=>{console.log("Error occured: ",err)});
     res.redirect(`/listings/${id}`);
+});
+
+//Delete Route
+app.delete("/listings/:id", async (req,res)=>{
+    let {id} = req.params;
+    console.log(id);
+    let deleted = await Listing.findByIdAndDelete(id);
+    // console.log(deleted);
+    res.redirect("/listings");
 });
 
 // app.get("/testListing", async (req,res)=>{
