@@ -31,7 +31,7 @@ app.get("/listings", async (req, res)=>{
     res.render("listings/index.ejs", {allListings});
 });
 
-//New
+//New Route
 app.get("/listings/new", (req,res)=>{
     res.render("listings/new.ejs");
 });
@@ -41,6 +41,28 @@ app.get("/listings/:id", async (req,res)=>{
     let {id} = req.params;
     const listing = await Listing.findById(id);
     res.render("listings/show.ejs", { listing });
+});
+
+// Create Route
+app.post("/listings", (req,res)=>{
+    let {title: newTitle, description: newDescription, image: newImage, price: newPrice, country: newCountry, location: newLocation} = req.body;
+    
+    const listing = new Listing ({
+        title: newTitle,
+        description: newDescription,
+        image: {
+            filename: "listingimage",
+            url: newImage,
+        },
+        price: newPrice,
+        country: newCountry,
+        location: newLocation,
+    });
+    // console.log(listing);
+    listing.save().then(()=>{
+        console.log("new listing saved.");
+    }).catch(err=>{console.log("Error Occured: ",err)});
+    res.redirect("/listings");
 });
 
 // app.get("/testListing", async (req,res)=>{
