@@ -5,6 +5,9 @@ const mongoose = require("mongoose");
 const path = require("path");
 const Listing = require("./models/listing.js");
 const PORT = 3000;
+const methodOverride = require('method-override')
+app.use(methodOverride('_method'));
+
 
 const MONGO_URL ='mongodb://127.0.0.1:27017/airbnb';
 
@@ -63,6 +66,26 @@ app.post("/listings", (req,res)=>{
         console.log("new listing saved.");
     }).catch(err=>{console.log("Error Occured: ",err)});
     res.redirect("/listings");
+});
+
+//Edit Route
+app.get("/listings/:id/edit", async (req,res)=>{
+    const {id} = req.params;
+    const listing = await Listing.findById(id);
+    // console.log(listing);
+    res.render("listings/edit.ejs", {listing});
+});
+
+// Update Route
+app.put("/listings/:id", async (req,res)=>{
+    let {id} = req.params;
+    let{listing} = req.body;
+    listing.image.filename ="listingimage";
+    // console.log(id);
+    await Listing.findByIdAndUpdate(id, {...listing}, {new: true}).then((result)=>{
+        // console.log("listing is updated: ", result);
+    }).catch(err=>{console.log("Error occured: ",err)});
+    res.redirect(`/listings/${id}`);
 });
 
 // app.get("/testListing", async (req,res)=>{
