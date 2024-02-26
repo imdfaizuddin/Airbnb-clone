@@ -8,6 +8,7 @@ const PORT = 3000;
 const ejsMate = require("ejs-mate");
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname, "/public")));
 
 
 const MONGO_URL ='mongodb://127.0.0.1:27017/airbnb';
