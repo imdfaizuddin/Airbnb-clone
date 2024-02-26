@@ -14,3 +14,24 @@
 .nav-link{
     color: #222222 !important;
 }
+
+.f-info-socials{
+    display: flex;
+    gap: 1rem;
+    font-size: 1.2rem;
+}
+
+.f-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 8rem;
+    background-color: #ebebeb;
+}
+
+.f-info-links a{
+    text-decoration: none;
+    color: black;
+}
