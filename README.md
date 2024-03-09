@@ -78,3 +78,4 @@ Contributions to the project are welcome! To contribute, please follow these ste
 ## Acknowledgements
 
 - This project was inspired by the functionalities provided by Airbnb for managing property listings.
+- Note : Not finished work in progress..
