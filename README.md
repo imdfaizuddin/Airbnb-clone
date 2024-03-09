@@ -4,7 +4,7 @@ This project is a web application developed to manage property listings, similar
 
 ## Screenshots
 
-![Homepage](/screenshots/homePage.png)
+![Homepage](/screenshots/HomePage.png)
 *Homepage*
 
 ![Listing Details](/screenshots/listing_details.png)
