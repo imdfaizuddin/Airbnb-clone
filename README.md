@@ -34,13 +34,13 @@ This project is a web application developed to manage property listings, similar
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/airbnb-like-listings.git
+    git clone https://github.com/imdfaizuddin/Airbnb-clone.git
     ```
 
 2. Navigate to the project directory:
 
     ```bash
-    cd airbnb-like-listings
+    cd Airbnb-clone
     ```
 
 3. Install dependencies:
@@ -74,9 +74,6 @@ Contributions to the project are welcome! To contribute, please follow these ste
 4. Push to the branch (`git push origin feature/yourfeature`).
 5. Create a new pull request.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements
 
