@@ -28,7 +28,7 @@ app.use(express.json());
 app.engine('ejs', ejsMate);
 
 app.get("/", (req,res)=>{
-    res.send("working");
+    res.redirect("/listings");
 });
 
 // Index route / all listing route
