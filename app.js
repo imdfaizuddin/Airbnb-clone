@@ -7,6 +7,7 @@ const Listing = require("./models/listing.js");
 const PORT = 3000;
 const ejsMate = require("ejs-mate");
 const methodOverride = require('method-override')
+const ExpresError = require("./utils/ExpressError.js");
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, "/public")));
 
@@ -100,6 +101,15 @@ app.delete("/listings/:id", async (req,res)=>{
     res.redirect("/listings");
 });
 
+
+app.all("*", (req, res, next)=>{
+    next(new ExpresError(404, "Page Not Found"));
+});
+
+app.use((err, req,res, next)=>{
+    let {statusCode, message} = err;
+    res.status(statusCode).send(message);
+})
 // app.get("/testListing", async (req,res)=>{
 //     let sampleListing = new Listing({
 //         title: "My New Villa",
