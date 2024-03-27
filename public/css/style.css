@@ -89,10 +89,12 @@ body{
 
 /* New.ejs  */
 .btn-add{
+    color: white;
     background-color: #fe424d;
     border-color: #fe424d;
 }
 .btn-add:hover{
+    color: white;
     background-color: #fe424d;
     border-color: #fe424d;
 }
