@@ -67,6 +67,9 @@ app.post("/listings", wrapAsync (async (req, res) => {
         location: newLocation,
     });
     // console.log(listing);
+    if(!listing.title && !listing.price){
+        throw new ExpresError(400, "Send valid data for listing");
+    }
     await listing.save();
     res.redirect("/listings");
 }));
@@ -84,7 +87,10 @@ app.put("/listings/:id", wrapAsync(async (req, res) => {
     let { id } = req.params;
     let { listing } = req.body;
     listing.image.filename = "listingimage";
-    // console.log(id);
+    console.log(id);
+    if(!listing.title && !listing.price){
+        throw new ExpresError(400, "Send valid data for listing");
+    }
     await Listing.findByIdAndUpdate(id, { ...listing }, { new: true, runValidators: true });
     res.redirect(`/listings/${id}`);
 }));
@@ -105,7 +111,9 @@ app.all("*", (req, res, next) => {
 
 app.use((err, req, res, next) => {
     let { statusCode = 500, message = "Something went wrong" } = err;
-    res.status(statusCode).send(message);
+    // res.status(statusCode).send(message);
+    console.log(err)
+    res.render("listings/error.ejs", {err});
 })
 // app.get("/testListing", async (req,res)=>{
 //     let sampleListing = new Listing({
